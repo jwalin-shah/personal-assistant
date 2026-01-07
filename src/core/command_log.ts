@@ -145,9 +145,12 @@ export class CommandLogger {
 
             // Write to log file
             fs.appendFileSync(this.logPath, JSON.stringify(finalEntry) + '\n', 'utf8');
-        } catch {
+        } catch (_err: unknown) {
             // Silently ignore logging failures to not break execution
             // Could optionally log to stderr in development
+            if (_err instanceof Error) {
+                console.error(`CommandLogger error: ${_err.message}`);
+            }
         }
     }
 
@@ -216,16 +219,76 @@ export class CommandLogger {
 
     /**
      * Read command logs from file.
+     * Uses a stream-based approach to avoid loading the entire file into memory.
+     * Defaults to returning the last 2000 entries to prevent OOM.
      */
-    readLogs(limit?: number): CommandLogEntry[] {
+    readLogs(limit: number = 2000): CommandLogEntry[] {
         if (!fs.existsSync(this.logPath)) return [];
 
         try {
-            const content = fs.readFileSync(this.logPath, 'utf8');
-            const lines = content.trim().split('\n').filter(Boolean);
-            const entries = lines.map(line => JSON.parse(line) as CommandLogEntry);
+            // Memory optimization: If file is huge, this sync read is still dangerous.
+            // But for a surgical fix without async refactoring (which breaks call sites),
+            // we apply the limit strictly after read.
+            // ideally we would use readline, but readLogs is synchronous in the interface.
+            // Refactoring to async readLogs would require updating cli.ts and other consumers.
 
-            // Sort by timestamp (newest first)
+            // Given the constraints, we must keep it synchronous.
+            // To truly fix OOM with sync API, we should use fs.readSync with a buffer from the end.
+
+            // Let's implement a robust synchronous reverse reader.
+            const entries: CommandLogEntry[] = [];
+            const fd = fs.openSync(this.logPath, 'r');
+            try {
+                const stats = fs.fstatSync(fd);
+                const fileSize = stats.size;
+                const bufferSize = 1024 * 64; // 64KB chunks
+                const buffer = Buffer.alloc(bufferSize);
+
+                let position = fileSize;
+                let remainder = '';
+
+                while (position > 0 && entries.length < limit) {
+                    const readSize = Math.min(position, bufferSize);
+                    position -= readSize;
+
+                    fs.readSync(fd, buffer, 0, readSize, position);
+                    const chunk = buffer.toString('utf8', 0, readSize);
+
+                    // Combine with remainder from previous iteration (which was the start of a line)
+                    const content = chunk + remainder;
+                    const lines = content.split('\n');
+
+                    // The first element might be partial if we aren't at the start of file
+                    if (position > 0) {
+                        remainder = lines.shift() || '';
+                    } else {
+                        remainder = '';
+                    }
+
+                    // Process lines in reverse order
+                    for (let i = lines.length - 1; i >= 0; i--) {
+                        const line = lines[i].trim();
+                        if (!line) continue;
+
+                        try {
+                            entries.push(JSON.parse(line));
+                            if (entries.length >= limit) break;
+                        } catch (_e: unknown) {
+                            // Ignore corrupt lines
+                            if (_e instanceof Error) {
+                                console.error(`CommandLogger readLogs parse error: ${_e.message}`);
+                            }
+                        }
+                    }
+                }
+            } finally {
+                fs.closeSync(fd);
+            }
+
+            // Entries are already newest-first (read from end)
+            // But the original implementation sorted by ts.
+            // Our reverse read gives rough reverse chronological order (append order).
+            // Let's sort them to be precise.
             entries.sort((a, b) => new Date(b.ts).getTime() - new Date(a.ts).getTime());
 
             return limit ? entries.slice(0, limit) : entries;
