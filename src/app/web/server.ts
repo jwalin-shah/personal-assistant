@@ -121,12 +121,12 @@ async function handleAPI(
                 if (req.method === 'GET') {
                     result = await executor.execute('task_list', {});
                 } else if (req.method === 'POST') {
-                    result = await executor.execute('task_add', body);
+                    result = await executor.execute('task_add', body as Record<string, unknown>);
                 }
                 break;
 
             case '/api/tasks/done':
-                result = await executor.execute('task_done', body);
+                result = await executor.execute('task_done', body as Record<string, unknown>);
                 break;
 
             case '/api/memory':
@@ -134,7 +134,7 @@ async function handleAPI(
                     const query = (url.parse(req.url || '', true).query.q as string) || '';
                     result = await executor.execute('recall', { query });
                 } else if (req.method === 'POST') {
-                    result = await executor.execute('remember', body);
+                    result = await executor.execute('remember', body as Record<string, unknown>);
                 }
                 break;
 
