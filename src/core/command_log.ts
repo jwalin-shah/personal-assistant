@@ -145,12 +145,12 @@ export class CommandLogger {
 
             // Write to log file
             fs.appendFileSync(this.logPath, JSON.stringify(finalEntry) + '\n', 'utf8');
-        } catch (_err: unknown) {
+        } catch (
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            _err: unknown
+        ) {
             // Silently ignore logging failures to not break execution
             // Could optionally log to stderr in development
-            if (_err instanceof Error) {
-                console.error(`CommandLogger error: ${_err.message}`);
-            }
         }
     }
 
@@ -273,11 +273,11 @@ export class CommandLogger {
                         try {
                             entries.push(JSON.parse(line));
                             if (entries.length >= limit) break;
-                        } catch (_e: unknown) {
+                        } catch (
+                            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                            _e: unknown
+                        ) {
                             // Ignore corrupt lines
-                            if (_e instanceof Error) {
-                                console.error(`CommandLogger readLogs parse error: ${_e.message}`);
-                            }
                         }
                     }
                 }
