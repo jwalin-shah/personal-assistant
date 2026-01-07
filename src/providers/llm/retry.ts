@@ -112,7 +112,7 @@ export async function withRetry<T>(fn: () => Promise<T>, options: RetryOptions =
             }
 
             // Don't retry if error is not retryable
-            if (!shouldRetry(error)) {
+            if (!shouldRetry(error as Error)) {
                 break;
             }
 

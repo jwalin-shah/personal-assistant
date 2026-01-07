@@ -448,19 +448,19 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (_p: string) => {
+                resolve: (p: string) => {
                     if (p === 'source14.txt') {
                         return path.resolve(testRoot, p);
                     }
                     throw new Error('Path traversal detected');
                 },
-                assertAllowed: (_p: string) => {
+                assertAllowed: (p: string) => {
                     if (p === path.resolve(testRoot, 'source14.txt')) {
                         return;
                     }
                     throw new Error('Path not allowed');
                 },
-                resolveAllowed: (_p: string) => {
+                resolveAllowed: (p: string) => {
                     if (p === 'source14.txt') {
                         return path.resolve(testRoot, p);
                     }
@@ -771,19 +771,19 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (_p: string) => {
+                resolve: (p: string) => {
                     if (p === 'source23.txt') {
                         return path.resolve(testRoot, p);
                     }
                     throw new Error('Path traversal detected');
                 },
-                assertAllowed: (_p: string) => {
+                assertAllowed: (p: string) => {
                     if (p === path.resolve(testRoot, 'source23.txt')) {
                         return;
                     }
                     throw new Error('Path not allowed');
                 },
-                resolveAllowed: (_p: string) => {
+                resolveAllowed: (p: string) => {
                     if (p === 'source23.txt') {
                         return path.resolve(testRoot, p);
                     }
@@ -1120,7 +1120,7 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (_p: string) => path.resolve(testRoot, p),
+                resolve: (p: string) => path.resolve(testRoot, p),
                 assertAllowed: () => {
                     throw new Error('Path not allowed');
                 },

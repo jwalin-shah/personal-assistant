@@ -130,8 +130,8 @@ function fetchFallback(url: string, options?: FetchOptions): Promise<FetchRespon
 }
 
 function getFetch(): FetchLike {
-    if (typeof fetch === 'function') return fetch.bind(globalThis);
-    return fetchFallback;
+    if (typeof fetch === 'function') return fetch.bind(globalThis) as unknown as FetchLike;
+    return fetchFallback as unknown as FetchLike;
 }
 
 export class OpenAICompatibleProvider implements LLMProvider {
