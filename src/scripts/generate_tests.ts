@@ -266,8 +266,9 @@ function generateTestCases(handlerName: string, args: SchemaArg[], hasContext: b
         assert.equal(result.ok, true, 'Should succeed with valid args');
         assert.ok(result.result, 'Should return result');
         console.log('PASS: Success case');
-    } catch (e: any) {
-        console.error('FAIL: Success case', e.message);
+    } catch (e: unknown) {
+        const err = e as Error;
+        console.error('FAIL: Success case', err.message);
         failures++;
     }`);
 
@@ -276,14 +277,16 @@ function generateTestCases(handlerName: string, args: SchemaArg[], hasContext: b
         for (const arg of requiredArgs) {
             testCases.push(`    // Test: Missing required arg '${arg.name}'
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const args: any = { ...${successArgsJson} };
         delete args.${arg.name};
         const result = ${handlerName}(args${contextParam});
         assert.equal(result.ok, false, 'Should fail without ${arg.name}');
         assert.ok(result.error?.code === 'MISSING_ARGUMENT' || result.error?.code === 'VALIDATION_ERROR');
         console.log('PASS: Missing required arg ${arg.name}');
-    } catch (e: any) {
-        console.error('FAIL: Missing required arg ${arg.name}', e.message);
+    } catch (e: unknown) {
+        const err = e as Error;
+        console.error('FAIL: Missing required arg ${arg.name}', err.message);
         failures++;
     }`);
         }
@@ -295,14 +298,16 @@ function generateTestCases(handlerName: string, args: SchemaArg[], hasContext: b
             if (arg.type === 'string') {
                 testCases.push(`    // Test: Invalid type for '${arg.name}' (number instead of string)
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const args: any = { ...${successArgsJson} };
         args.${arg.name} = 123; // Wrong type
         const result = ${handlerName}(args${contextParam});
         assert.equal(result.ok, false, 'Should fail with invalid type');
         assert.ok(result.error?.code === 'VALIDATION_ERROR' || result.error?.code === 'INVALID_ARGUMENT');
         console.log('PASS: Invalid type for ${arg.name}');
-    } catch (e: any) {
-        console.error('FAIL: Invalid type for ${arg.name}', e.message);
+    } catch (e: unknown) {
+        const err = e as Error;
+        console.error('FAIL: Invalid type for ${arg.name}', err.message);
         failures++;
     }`);
             }
@@ -319,8 +324,9 @@ function generateTestCases(handlerName: string, args: SchemaArg[], hasContext: b
         const result = ${handlerName}(args${contextParam});
         assert.equal(result.ok, false, 'Should fail with empty string');
         console.log('PASS: Empty string for ${arg.name}');
-    } catch (e: any) {
-        console.error('FAIL: Empty string for ${arg.name}', e.message);
+    } catch (e: unknown) {
+        const err = e as Error;
+        console.error('FAIL: Empty string for ${arg.name}', err.message);
         failures++;
     }`);
             }
