@@ -6,7 +6,7 @@
  */
 
 // All imports consolidated at the top of the file
-import type { Agent, Message, ResolvedConfig, ToolSpec } from '../core';
+import type { Agent, Message, ResolvedConfig, ToolSpec, ToolResult } from '../core';
 import {
     generateCorrelationId,
     getPackageVersion,
@@ -115,7 +115,8 @@ function parseInput(
 // Pre-compiled regex patterns for fast-path matching (V8 optimization)
 const RE_REMEMBER = /^remember:\s+([\s\S]+)$/i;
 const RE_RECALL = /^recall:\s+([\s\S]+)$/i;
-const RE_WRITE = /^write\s+(\S+)\s+([\s\S]+)$/i;
+// Support quoted filenames for write command: write "my file.txt" content OR write file.txt content
+const RE_WRITE = /^write\s+(?:"([^"]+)"|(\S+))\s+([\s\S]+)$/i;
 const RE_READ_URL = /^(?:read\s+url\s+(\S+)|read\s+(https?:\/\/\S+))$/i;
 const RE_READ = /^read\s+((?!https?:\/\/)[^\s.]+(?:\.[^\s.]+)?(?:\/\S*)?)\s*$/i; // Exclude http/https and bare domains
 const RE_LIST = /^list(\s+files)?$/i;
@@ -382,12 +383,13 @@ export async function route(
         if (recallMatch && isToolAllowed('recall'))
             return success(intent, 'recall', { query: recallMatch[1] }, 'regex_fast_path', start);
         if (writeMatch && isToolAllowed('write_file')) {
-            const pathArg = writeMatch[1];
+            const pathArg = writeMatch[1] || writeMatch[2];
+            const content = writeMatch[3];
             if (!isSuspiciousPath(pathArg)) {
                 return success(
                     intent,
                     'write_file',
-                    { path: pathArg, content: writeMatch[2] },
+                    { path: pathArg, content },
                     'regex_fast_path',
                     start
                 );
