@@ -106,8 +106,8 @@ async function runTests() {
         await testMockInjection();
         await testMockToolCall();
         await testCustomAgent();
-    } catch (err) {
-        console.error('Unhandled Exception:', err);
+    } catch (err: unknown) {
+        console.error('Unhandled Exception:', err instanceof Error ? err.message : String(err));
         failures++;
     }
 
