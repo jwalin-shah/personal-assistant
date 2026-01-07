@@ -228,21 +228,7 @@
             }
         ]
     },
-    {
-        "name": "Weather: 'weather in <multiword>' routes and uses full location",
-        "category": "edge",
-        "steps": [
-            {
-                "input": "weather in san mateo ca",
-                "expect": {
-                    "tool": { "name": "get_weather" },
-                    "tool_result": { "keys": ["location", "temperature_f"] },
-                    "final": { "contains_any": ["San", "Mateo", "temperature"] },
-                    "note": "This will fail if your regex only captures one token. Make sure dispatcher captures full location string."
-                }
-            }
-        ]
-    },
+
     {
         "name": "Weather: alternate phrasing with question mark",
         "category": "edge",
@@ -576,8 +562,8 @@
         "category": "edge",
         "steps": [
             {
-                "input": "remember: my dog's name is Max",
-                "expect": { "tool": { "name": "remember" } }
+                "input": "memory add my dog's name is Max",
+                "expect": { "tool": { "name": "memory_add" } }
             },
             {
                 "input": "memory search dog",

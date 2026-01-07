@@ -42,9 +42,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -102,9 +102,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -128,9 +128,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -189,9 +189,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -229,9 +229,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -260,9 +260,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -326,9 +326,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -355,9 +355,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -386,9 +386,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -448,19 +448,19 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => {
+                resolve: (_p: string) => {
                     if (p === 'source14.txt') {
                         return path.resolve(testRoot, p);
                     }
                     throw new Error('Path traversal detected');
                 },
-                assertAllowed: (p: string) => {
+                assertAllowed: (_p: string) => {
                     if (p === path.resolve(testRoot, 'source14.txt')) {
                         return;
                     }
                     throw new Error('Path not allowed');
                 },
-                resolveAllowed: (p: string) => {
+                resolveAllowed: (_p: string) => {
                     if (p === 'source14.txt') {
                         return path.resolve(testRoot, p);
                     }
@@ -497,9 +497,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -547,9 +547,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -578,9 +578,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -649,9 +649,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -678,9 +678,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -709,9 +709,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -771,19 +771,19 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => {
+                resolve: (_p: string) => {
                     if (p === 'source23.txt') {
                         return path.resolve(testRoot, p);
                     }
                     throw new Error('Path traversal detected');
                 },
-                assertAllowed: (p: string) => {
+                assertAllowed: (_p: string) => {
                     if (p === path.resolve(testRoot, 'source23.txt')) {
                         return;
                     }
                     throw new Error('Path not allowed');
                 },
-                resolveAllowed: (p: string) => {
+                resolveAllowed: (_p: string) => {
                     if (p === 'source23.txt') {
                         return path.resolve(testRoot, p);
                     }
@@ -819,9 +819,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -858,9 +858,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -888,9 +888,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -944,9 +944,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -1002,9 +1002,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -1033,9 +1033,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -1066,9 +1066,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -1096,9 +1096,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -1120,7 +1120,7 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, p),
                 assertAllowed: () => {
                     throw new Error('Path not allowed');
                 },
@@ -1156,9 +1156,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -1188,9 +1188,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -1223,9 +1223,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -1283,9 +1283,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -1309,9 +1309,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
@@ -1386,9 +1386,9 @@ try {
         ...createMockContext({
             baseDir: testRoot,
             paths: {
-                resolve: (p: string) => path.resolve(testRoot, p),
+                resolve: (_p: string) => path.resolve(testRoot, _p),
                 assertAllowed: () => {},
-                resolveAllowed: (p: string) => path.resolve(testRoot, p),
+                resolveAllowed: (_p: string) => path.resolve(testRoot, _p),
             },
         }),
         requiresConfirmation: () => false,
