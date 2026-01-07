@@ -30,11 +30,13 @@ const DEFAULT_OPTIONS: Required<Omit<RetryOptions, 'onRetry' | 'retryOn'>> = {
  * Check if an error is retryable based on HTTP status codes.
  */
 export function isRetryableError(error: unknown): boolean {
+    if (!error) return false;
+
     // Check for status code in error or response
     const err = error as {
-        status?: number;
-        statusCode?: number;
-        response?: { status?: number };
+        status?: number | string;
+        statusCode?: number | string;
+        response?: { status?: number | string };
         message?: string;
     };
     const status = err.status || err.statusCode || err.response?.status;
@@ -118,7 +120,7 @@ export async function withRetry<T>(fn: () => Promise<T>, options: RetryOptions =
             const delayMs = calculateDelay(attempt, opts.baseDelayMs, opts.maxDelayMs);
 
             if (opts.onRetry) {
-                opts.onRetry(attempt + 1, delayMs, error);
+                opts.onRetry(attempt + 1, delayMs, lastError);
             }
 
             await sleep(delayMs);

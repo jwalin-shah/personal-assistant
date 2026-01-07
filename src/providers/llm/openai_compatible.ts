@@ -53,7 +53,7 @@ function fetchFallback(url: string, options?: FetchOptions): Promise<FetchRespon
         const requestFn = urlObj.protocol === 'https:' ? httpsRequest : httpRequest;
 
         // Handle AbortController signal for timeout
-        const signal = options?.signal;
+        const signal = options?.signal as AbortSignal | undefined;
         let timeoutId: NodeJS.Timeout | null = null;
         let req: ReturnType<typeof httpsRequest> | null = null;
 
@@ -88,8 +88,8 @@ function fetchFallback(url: string, options?: FetchOptions): Promise<FetchRespon
 
         req = requestFn(
             {
-                method: options?.method || 'GET',
-                headers: options?.headers || {},
+                method: (options?.method as string) || 'GET',
+                headers: (options?.headers as Record<string, string>) || {},
                 hostname: urlObj.hostname,
                 port: urlObj.port,
                 path: `${urlObj.pathname}${urlObj.search}`,
@@ -114,7 +114,7 @@ function fetchFallback(url: string, options?: FetchOptions): Promise<FetchRespon
                     });
                 });
             }
-        );
+        ) as http.ClientRequest;
 
         req.on('error', (err: Error) => {
             cleanup();
@@ -179,8 +179,8 @@ export class OpenAICompatibleProvider implements LLMProvider {
         // Instead of sending the full JSON Schema (heavy), we send TypeScript signatures (light)
         // and ask the model to reply with a specific JSON format.
         const useCompact = options?.toolFormat === 'compact';
-        let toolsPayload = undefined;
-        let systemMessageContent = messages[0].content;
+        let toolsPayload: unknown = undefined;
+        let systemMessageContent = messages[0].content || '';
 
         if (tools && Object.keys(tools).length > 0) {
             if (useCompact) {
@@ -251,7 +251,7 @@ export class OpenAICompatibleProvider implements LLMProvider {
                             },
                             body: bodyStr,
                             signal: controller.signal,
-                        });
+                        } as RequestInit);
 
                         clearTimeout(timeoutId);
 
@@ -537,7 +537,7 @@ export class OpenAICompatibleProvider implements LLMProvider {
                         requestCompleted = true;
                         resolve(res);
                     }
-                );
+                ) as http.ClientRequest;
 
                 req.on('error', (err: Error) => {
                     if (timeoutId) {
@@ -587,7 +587,7 @@ export class OpenAICompatibleProvider implements LLMProvider {
 
         try {
             for await (const chunk of response) {
-                buffer += chunk;
+                buffer += (chunk as string);
                 const lines = buffer.split('\n');
                 buffer = lines.pop() || '';
 
@@ -601,7 +601,8 @@ export class OpenAICompatibleProvider implements LLMProvider {
                     }
 
                     try {
-                        const parsed = JSON.parse(data);
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        const parsed = JSON.parse(data) as any;
                         const content = parsed.choices?.[0]?.delta?.content || '';
                         if (content) {
                             yield { content, done: false };
