@@ -69,19 +69,19 @@ export function log(level: LogLevel, msg: string, data?: Record<string, unknown>
         const parts: string[] = [`[${entry.level}]`];
 
         if (data?.correlationId) {
-            parts.push(`[${data.correlationId}]`);
+            parts.push(`[${String(data.correlationId)}]`);
         }
         if (data?.agent) {
-            parts.push(`[${data.agent}]`);
+            parts.push(`[${String(data.agent)}]`);
         }
         if (data?.tool) {
-            parts.push(`[${data.tool}]`);
+            parts.push(`[${String(data.tool)}]`);
         }
 
         parts.push(msg);
 
         if (data?.durationMs !== undefined) {
-            parts.push(`(${data.durationMs}ms)`);
+            parts.push(`(${String(data.durationMs)}ms)`);
         }
 
         console.log(parts.join(' '));
