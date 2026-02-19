@@ -177,9 +177,9 @@ Heap snapshots can be opened in Chrome DevTools:
 
 ## 🎨 Code Formatting
 
-Code is automatically formatted on save (VS Code) or via pre-commit hook.
+Code is automatically formatted on save (VS Code) or by running `npm run format`.
 
-**Prettier Config** (`.prettierrc`):
+**Prettier defaults**:
 
 - Single quotes
 - 4-space indentation
@@ -204,7 +204,7 @@ Before committing, ensure:
 - [ ] No console.log statements (unless intentional)
 - [ ] Tests cover new functionality
 
-The pre-commit hook will catch most of these automatically.
+Run `npm run check` to catch issues before committing.
 
 ## 🚨 Troubleshooting
 
@@ -225,17 +225,17 @@ rm -rf coverage/
 npm run test:coverage
 ```
 
-### Pre-commit hook not running
+### Local checks not running
 
 ```bash
-# Reinstall husky
-npm run prepare
+# Reinstall dependencies
+npm install
 ```
 
 ### VS Code not formatting on save
 
 1. Install Prettier extension
-2. Check `.vscode/settings.json` exists
+2. Verify a formatter is selected in your editor
 3. Reload VS Code window
 
 ## 📚 Additional Resources

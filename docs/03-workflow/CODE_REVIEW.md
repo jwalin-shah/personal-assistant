@@ -120,11 +120,11 @@ npm run review [file]
 
 **ESLint**:
 - **Script**: `node_modules/.bin/eslint` (executable)
-- **Rules**: `.eslintrc.js` (configuration/patterns)
+- **Rules**: `eslint.config.mjs` (configuration/patterns)
 
 **Prettier**:
 - **Script**: `node_modules/.bin/prettier` (executable)
-- **Config**: `.prettierrc` (configuration)
+- **Config**: default settings or editor-level config
 
 **TypeScript**:
 - **Script**: `node_modules/.bin/tsc` (executable)
@@ -362,4 +362,3 @@ This runs `src/scripts/code_review.ts` which checks...
 This follows industry best practices and separation of concerns.
 
 **Quick Start**: Run `npm run review` and fix critical issues first!
-

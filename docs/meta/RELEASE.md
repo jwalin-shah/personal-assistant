@@ -23,6 +23,6 @@ npm run release
 
 ## Configuration
 
-See `.releaserc.json` for semantic-release configuration.
+Release behavior uses the `semantic-release` defaults configured in CI/project scripts.
 
 Ensure CI has the correct auth tokens (e.g., npm/GitHub) if publishing is enabled.
