@@ -1,62 +1,82 @@
 # Personal Assistant
 
-A local-first CLI assistant that routes natural language commands to tools with optional LLM fallback.
+Local-first assistant runtime for turning natural-language requests into reliable tool execution.
 
-## 📚 Documentation
+## TL;DR
 
-**[START HERE: Documentation Map](docs/START_HERE.md)**
+- **What it is:** AI assistant infrastructure (not a single domain app)
+- **Primary UX:** CLI + REPL
+- **Core strength:** Deterministic-first routing with LLM fallback
+- **Use it for:** Building assistants that must call tools safely and predictably
 
-The documentation has been organized to help you find what you need quickly:
+## Why This Project
 
-- **[QUICKSTART](docs/02-guides/QUICKSTART.md)**: Setup and first run.
-- **[COMMANDS](docs/04-reference/COMMANDS.md)**: CLI reference.
-- **[ARCHITECTURE](docs/01-concepts/ARCHITECTURE.md)**: How it works.
-- **[CONTRIBUTING](docs/03-workflow/BUILD_AND_RUN.md)**: Build and test guide.
+Most assistant demos optimize for chat quality. This project optimizes for **execution quality**:
 
----
+- route correctly
+- invoke the right tool
+- enforce safety boundaries
+- keep provider choice flexible
 
-## Quick Start
+## Key Capabilities
+
+- Multi-stage router: regex -> heuristic -> parser -> LLM fallback
+- Tool orchestration: files, git, shell, tasks, memory, communication tools
+- Plugin model: external tools via `~/.assistant/plugins/`
+- Provider-agnostic model layer: Groq, OpenRouter, mock/offline paths
+- Interfaces: CLI/REPL, optional web dashboard, VS Code extension
+
+## Architecture Snapshot
+
+```text
+Input (CLI/REPL/Web)
+  -> Router (deterministic-first, LLM fallback)
+  -> Execution Layer (built-in + plugin tools)
+  -> Safety + Validation
+  -> Output + Telemetry (responses, evals, benchmarks)
+```
+
+## Run In 60 Seconds
 
 ```bash
-# Install dependencies
+npm run showcase:setup
+npm run showcase:run
+npm run showcase:verify
+```
+
+Manual path:
+
+```bash
 npm install
-
-# Build
 npm run build
-
-# Run CLI (requires build first)
-./dist/app/cli.js --help
-
-# Or use npm scripts
-npm start -- --help
-npm run demo
 npm run repl
 ```
 
-## Features
+## Engineering Decisions
 
-- **Multi-stage routing**: Regex → Heuristic → Parsers → LLM fallback
-- **Tool execution**: File ops, tasks, memory, git, shell commands
-- **REPL mode**: Interactive sessions with history and streaming
-- **Web dashboard**: Optional browser UI
-- **Provider-agnostic**: Groq, OpenRouter, or mock (offline)
-- **Plugin system**: Load external tools from `~/.assistant/plugins/`
-- **VS Code extension**: Inline commands in editor (Cmd+Shift+A)
-- **Docker support**: Containerized development environment
-- **API documentation**: Auto-generated from TypeScript/JSDoc
-- **Semantic versioning**: Automated releases with conventional commits
+- Kept scope to a **single-assistant runtime** (not multi-agent orchestration).
+- Chose deterministic-first routing to reduce cost and improve reliability.
+- Isolated provider interfaces so backend models can be swapped cleanly.
+- Kept local-first execution with explicit safety/validation boundaries.
 
-## Scope & Boundaries
+## What We Tried
 
-This repo contains the **personal assistant only**. It explicitly excludes:
+- Monorepo + orchestration coupling: too much complexity for assistant runtime iteration.
+- One broad provider interface: evolved into cleaner split interfaces.
+- Repo-local data defaults: convenient for dev, riskier for real usage; external data paths are preferred.
+- LLM-only routing: rejected in favor of deterministic-first behavior.
 
-- Workflow engine / multi-agent orchestration
-- Agent handoff protocols (HANDOFF.md, AGENTS.md)
-- Multi-agent chain coordination
+## Documentation
 
-If you're looking for orchestration tooling, see the parent monorepo's `packages/workflow-engine/`.
+- [Documentation Map](docs/START_HERE.md)
+- [Architecture](docs/01-concepts/ARCHITECTURE.md)
+- [Commands](docs/04-reference/COMMANDS.md)
+- [Design Decisions](docs/meta/DECISIONS.md)
+- [Stack Decision](docs/meta/STACK_DECISION.md)
 
-This separation is intentional (see [docs/meta/DECISIONS.md](docs/meta/DECISIONS.md) D015) to keep the assistant focused, testable, and independently deployable.
+## Non-Goals
+
+This repository does not implement multi-agent orchestration/handoff systems.
 
 ## License
 

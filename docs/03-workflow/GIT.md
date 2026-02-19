@@ -36,7 +36,7 @@ git config --global alias.ci commit
 
 ### Cursor Rules
 
-Git workflow rules are defined in `.cursor/rules/git.mdc`:
+Git workflow rules are defined in `docs/03-workflow/GIT.md`:
 - Pre-commit checklist
 - Commit message format (conventional commits)
 - What to commit vs ignore
@@ -869,7 +869,7 @@ git merge origin/main
 
 ## Integration
 
-- **Cursor Rules**: See `.cursor/rules/git.mdc` for git patterns
+- **Cursor Rules**: See `docs/03-workflow/GIT.md` for git patterns
 - **Preflight**: See `scripts/preflight.sh` for full checks
 - **Formatting**: Uses Prettier + ESLint (see `package.json`)
 - **Hooks**: Managed by Husky (see `.husky/`)

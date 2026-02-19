@@ -33,6 +33,12 @@ vscode-extension/*.vsix
 
 # IDE
 .idea/
+# Keep editor/AI assistant workspace files local-only
+.cursor/
+.vscode/
+.cursorignore
+.cursorindexingignore
+.cursorrules
 # Keep .vscode/ settings but keep user-specific files
 .vscode/settings.json.bak
 .vscode/launch.json.bak

@@ -1,115 +1,41 @@
 # Documentation Index
 
-**Single source of truth for all project documentation.**
+Canonical documentation map for this repository.
 
-## 🚀 Start Here
+## Start Here
 
-| Document | Purpose | When to Read |
-|----------|---------|--------------|
-| [HOW_WE_WORK.md](HOW_WE_WORK.md) | Complete workflow guide | **Read this first** |
-| [README.md](../README.md) | Project overview | Getting started |
-| [QUICKSTART.md](QUICKSTART.md) | Quick setup guide | First time setup |
-| [COMMANDS.md](COMMANDS.md) | All CLI commands | Using the CLI |
+- [Project README](../README.md)
+- [Documentation Map](START_HERE.md)
+- [Quickstart](02-guides/QUICKSTART.md)
 
-## 📚 Core Documentation
+## Core Concepts
 
-### Development Workflow
-- **[HOW_WE_WORK.md](HOW_WE_WORK.md)** - Complete workflow: commands, rules, testing, git, branch/PR style
-- **[WORKFLOW.md](WORKFLOW.md)** - Daily development workflow and tooling
-- **[GIT.md](GIT.md)** - Git workflow, hooks, branching, commit conventions
-- **[RELEASE.md](RELEASE.md)** - Release process (semantic-release, versioning)
-- **[TESTING.md](TESTING.md)** - Complete testing guide (strategy, coverage, utilities)
-- **[CODE_REVIEW.md](CODE_REVIEW.md)** - Code review guide (best practices, workflow)
+- [Architecture](01-concepts/ARCHITECTURE.md)
+- [Configuration](01-concepts/CONFIGURATION.md)
+- [Security](01-concepts/SECURITY.md)
+- [Architecture Decisions](meta/DECISIONS.md)
 
-### Configuration & Setup
-- **[CONFIGURATION.md](CONFIGURATION.md)** - Configuration options and environment variables
-- **[CURSOR_SETUP.md](CURSOR_SETUP.md)** - Complete Cursor IDE setup (custom commands, rules, indexing)
+## Guides
 
-### Architecture & Design
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture overview
-- **[DECISIONS.md](DECISIONS.md)** - Architecture decisions and rationale
-- **[STACK_DECISION.md](STACK_DECISION.md)** - Technology stack choices
+- [Build and Run](03-workflow/BUILD_AND_RUN.md)
+- [Testing](03-workflow/TESTING.md)
+- [Git Workflow](03-workflow/GIT.md)
+- [Code Review](03-workflow/CODE_REVIEW.md)
+- [Adding Tools](02-guides/ADDING_TOOLS_GUIDE.md)
+- [Tool Checklist](02-guides/TOOL_IMPLEMENTATION_CHECKLIST.md)
+- [Debugging](02-guides/DEBUGGING.md)
+- [Docker](02-guides/DOCKER.md)
 
-### Features
-- **[PLUGINS.md](PLUGINS.md)** - Plugin system
-- **[DOCKER.md](DOCKER.md)** - Docker setup and usage
-- **[CACHING.md](CACHING.md)** - Caching strategies (LLM, tests)
-- **[SECURITY.md](SECURITY.md)** - Security patterns and fixes
-- **[ERRORS.md](ERRORS.md)** - Error handling patterns
+## Reference
 
-### Tools & Implementation
-- **[ADDING_TOOLS_GUIDE.md](ADDING_TOOLS_GUIDE.md)** - How to add new tools
-- **[ADDING_TOOLS_QUICK_REFERENCE.md](ADDING_TOOLS_QUICK_REFERENCE.md)** - Quick reference for adding tools
-- **[TOOL_IMPLEMENTATION_CHECKLIST.md](TOOL_IMPLEMENTATION_CHECKLIST.md)** - Tool implementation checklist
+- [Commands](04-reference/COMMANDS.md)
+- [Plugins](04-reference/PLUGINS.md)
+- [Errors](04-reference/ERRORS.md)
+- [Caching](04-reference/CACHING.md)
+- [Parallel Tests](04-reference/PARALLEL_TESTS.md)
+- [Performance](04-reference/PERFORMANCE_OPTIMIZATIONS.md)
 
-## 📊 Reference Documents
+## Meta
 
-### Status & Tracking
-- **[STATUS_SUMMARY.md](STATUS_SUMMARY.md)** - Current project status
-- **[TASK_LOG.md](TASK_LOG.md)** - Task tracking
-
-### Performance & Optimization
-- **[PERFORMANCE_OPTIMIZATIONS.md](PERFORMANCE_OPTIMIZATIONS.md)** - Performance optimization guide
-- **[PARALLEL_TESTS.md](PARALLEL_TESTS.md)** - Parallel test execution
-
-### Reference Documents
-*These documents are kept for reference.*
-
-- **[DOCUMENTATION_CHECKLIST.md](DOCUMENTATION_CHECKLIST.md)** - Documentation checklist (reference)
-
-### Planning & Proposals
-- **[PROPOSED_TOOLS.md](PROPOSED_TOOLS.md)** - Proposed tools (future work)
-- **[DEBUGGING.md](DEBUGGING.md)** - Debugging patterns
-
-### Other
-- **[MDC_RULES_PORTABILITY.md](MDC_RULES_PORTABILITY.md)** - MDC rules portability guide
-
-## 🔍 Quick Links by Task
-
-### "I want to..."
-
-- **...understand how we work**: [HOW_WE_WORK.md](HOW_WE_WORK.md)
-- **...get started**: [QUICKSTART.md](QUICKSTART.md) → [README.md](../README.md)
-- **...use the CLI**: [COMMANDS.md](COMMANDS.md)
-- **...set up Cursor**: [CURSOR_SETUP.md](CURSOR_SETUP.md)
-- **...write tests**: [TESTING.md](TESTING.md)
-- **...review code**: [CODE_REVIEW.md](CODE_REVIEW.md)
-- **...understand architecture**: [ARCHITECTURE.md](ARCHITECTURE.md) → [DECISIONS.md](DECISIONS.md)
-- **...set up git**: [GIT.md](GIT.md)
-- **...add a tool**: [ADDING_TOOLS_GUIDE.md](ADDING_TOOLS_GUIDE.md)
-- **...optimize performance**: [CACHING.md](CACHING.md) → [PERFORMANCE_OPTIMIZATIONS.md](PERFORMANCE_OPTIMIZATIONS.md)
-- **...create a plugin**: [PLUGINS.md](PLUGINS.md)
-- **...use Docker**: [DOCKER.md](DOCKER.md)
-
-## 📝 Documentation Status
-
-### Authoritative (Keep & Update)
-These are the single source of truth for their topics:
-- `HOW_WE_WORK.md` - Complete workflow guide
-- `COMMANDS.md` - CLI commands
-- `GIT.md` - Git workflow
-- `TESTING.md` - Testing guide
-- `CODE_REVIEW.md` - Code review
-- `WORKFLOW.md` - Development workflow
-- `CONFIGURATION.md` - Configuration
-- `CURSOR_SETUP.md` - Cursor setup
-- `ARCHITECTURE.md` - Architecture
-- `DECISIONS.md` - Decisions
-- Feature docs: `PLUGINS.md`, `DOCKER.md`, `CACHING.md`, `SECURITY.md`, `ERRORS.md`
-
-### Reference/Historical (Keep but Labeled)
-Documents marked with "Status: Reference-only" or "Status: Historical" headers. These are kept for reference but may contain outdated information.
-
-### Deprecated (Stubs with Redirects)
-Documents that have been superseded. They contain redirect pointers to the authoritative source.
-
-## Contributing
-
-When adding new documentation:
-
-1. **Check if topic exists**: Look in this index first
-2. **Update authoritative doc**: If topic exists, update the authoritative doc, don't create a new one
-3. **Add to index**: Add new docs to this index in the appropriate section
-4. **Follow naming**: Use `UPPERCASE_WITH_UNDERSCORES.md` convention
-5. **Link from HOW_WE_WORK.md**: If it's a core workflow topic, add a link there
-
+- [Stack Decision](meta/STACK_DECISION.md)
+- [Release Process](meta/RELEASE.md)

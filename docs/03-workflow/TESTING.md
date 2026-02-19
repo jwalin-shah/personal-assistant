@@ -543,8 +543,8 @@ assistant generate tests my_tool
 
 ### Cursor Rules
 
-- `.cursor/rules/testing.mdc` - Testing patterns
-- `.cursor/rules/testing_improvements.mdc` - Cursor-specific patterns
+- `docs/03-workflow/TESTING.md` - Testing patterns
+- `docs/03-workflow/TESTING.md` - Cursor-specific patterns
 
 ### Cursor Commands
 
@@ -575,8 +575,8 @@ assistant generate tests my_tool
 ## Resources
 
 - **Test Utilities**: `src/core/test_utils.ts`
-- **Testing Rules**: `.cursor/rules/testing.mdc`
-- **Cursor Patterns**: `.cursor/rules/testing_improvements.mdc`
+- **Testing Rules**: `docs/03-workflow/TESTING.md`
+- **Cursor Patterns**: `docs/03-workflow/TESTING.md`
 - **Test Generation**: `assistant generate tests <tool>`
 
 ---

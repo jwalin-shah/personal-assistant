@@ -473,7 +473,7 @@ npm run preflight
 
 After adding a tool:
 
-1. **Commit automatically** (see `.cursor/rules/git.mdc`)
+1. **Commit automatically** (see `docs/03-workflow/GIT.md`)
 2. **Update documentation** if tool is user-facing
 3. **Add router patterns** in `src/app/router.ts` (optional, for natural language matching)
 
@@ -486,11 +486,11 @@ See existing tools for complete examples:
 
 ## Related Documentation
 
-- `.cursor/rules/tools.mdc` - Tool implementation patterns
-- `.cursor/rules/errors.mdc` - Error handling patterns
-- `.cursor/rules/security.mdc` - Security patterns
-- `.cursor/rules/testing.mdc` - Testing patterns
-- `.cursor/rules/role.impl.mdc` - Implementer role guide
+- `docs/02-guides/ADDING_TOOLS_GUIDE.md` - Tool implementation patterns
+- `docs/04-reference/ERRORS.md` - Error handling patterns
+- `docs/01-concepts/SECURITY.md` - Security patterns
+- `docs/03-workflow/TESTING.md` - Testing patterns
+- `docs/02-guides/ADDING_TOOLS_GUIDE.md` - Implementer role guide
 
 # Quick Reference: Adding Tools with `/impl_add_tool`
 
@@ -673,7 +673,7 @@ npm run preflight
 ## See Also
 
 - Full guide: `docs/ADDING_TOOLS_GUIDE.md`
-- Patterns: `.cursor/rules/tools.mdc`
-- Errors: `.cursor/rules/errors.mdc`
-- Security: `.cursor/rules/security.mdc`
+- Patterns: `docs/02-guides/ADDING_TOOLS_GUIDE.md`
+- Errors: `docs/04-reference/ERRORS.md`
+- Security: `docs/01-concepts/SECURITY.md`
 

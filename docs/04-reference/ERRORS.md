@@ -1,6 +1,6 @@
 # Error Handling Examples & Patterns
 
-**This is a reference guide. For essential conventions, see `.cursor/rules/errors.mdc`.**
+**This is a reference guide. For essential conventions, see `docs/04-reference/ERRORS.md`.**
 
 ## Detailed Examples
 

@@ -24,7 +24,7 @@ Complete guide to code review system, best practices, and quick reference for th
 - `code_review_fix.ts` - Auto-fixes issues
 - `refactor.ts` - Detects refactoring opportunities
 
-**✅ Patterns/Rules → `.cursor/rules/*.mdc`**:
+**✅ Patterns/Rules → project documentation in `docs/`**:
 - Guidelines and patterns for AI to follow
 - `code_review.mdc` - Review checklist, patterns, examples
 - `security.mdc` - Security patterns
@@ -111,7 +111,7 @@ npm run review [file]
 - **Examples**: ESLint, Prettier, TypeScript compiler
 
 **Rules (AI Guidance)**:
-- **Location**: `.cursor/rules/*.mdc`
+- **Location**: project documentation in `docs/`
 - **Purpose**: Guide AI to follow patterns
 - **Usage**: Cursor reads automatically when relevant
 - **Examples**: Code style, security patterns, review checklist
@@ -132,7 +132,7 @@ npm run review [file]
 
 **Our Code Review**:
 - **Script**: `src/scripts/code_review.ts` (executable) ✅
-- **Rules**: `.cursor/rules/code_review.mdc` (patterns) ✅
+- **Rules**: `docs/03-workflow/CODE_REVIEW.md` (patterns) ✅
 
 ### When to Use What
 
@@ -316,7 +316,7 @@ Scripts can reference rule files for patterns:
 ```typescript
 // In code_review.ts
 import * as fs from 'node:fs';
-const rulesPath = path.join(projectRoot, '.cursor/rules/code_review.mdc');
+const rulesPath = path.join(projectRoot, 'docs/code_review.mdc');
 const rules = fs.readFileSync(rulesPath, 'utf8');
 // Use rules to guide analysis
 ```
@@ -345,9 +345,9 @@ This runs `src/scripts/code_review.ts` which checks...
 
 - **Complete Strategy**: `docs/CONTINUOUS_IMPROVEMENT.md` (if exists)
 - **Cursor Prompts**: `docs/CURSOR_IMPROVEMENT_STRATEGY.md` (if exists)
-- **Code Review Rules**: `.cursor/rules/code_review.mdc`
-- **Security Patterns**: `.cursor/rules/security.mdc`
-- **Error Patterns**: `.cursor/rules/errors.mdc`
+- **Code Review Rules**: `docs/03-workflow/CODE_REVIEW.md`
+- **Security Patterns**: `docs/01-concepts/SECURITY.md`
+- **Error Patterns**: `docs/04-reference/ERRORS.md`
 
 ---
 
@@ -356,7 +356,7 @@ This runs `src/scripts/code_review.ts` which checks...
 **Current structure is correct!** ✅
 
 - **Scripts** (`src/scripts/`) = Executable tools
-- **Rules** (`.cursor/rules/`) = AI guidance patterns
+- **Rules** (`docs/`) = AI guidance patterns
 - **Docs** (`docs/`) = User guides
 
 This follows industry best practices and separation of concerns.

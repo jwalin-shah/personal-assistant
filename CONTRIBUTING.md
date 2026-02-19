@@ -113,7 +113,7 @@ npm run fix
 
 ## Adding a New Tool
 
-See `.cursor/rules/tools.mdc` for the full checklist.
+See `docs/02-guides/ADDING_TOOLS_GUIDE.md` for the full checklist.
 
 Quick version:
 
@@ -162,7 +162,7 @@ src/
 
 ## Need Help?
 
-- Check `.cursor/rules/debugging.mdc`
+- Check `docs/02-guides/DEBUGGING.md`
 - Run `npm run doctor`
 - Look at similar existing code
-- See [docs/CACHING.md](docs/CACHING.md) for caching details
+- See [docs/04-reference/CACHING.md](docs/04-reference/CACHING.md) for caching details
