@@ -1,0 +1,6 @@
+{"input": "what time is it", "expected_tool": "get_time", "category": "regex_time"}
+{"input": "calculate: 5 + 5", "expected_tool": "calculate", "category": "regex_calc"}
+{"input": "git status", "expected_tool": "git_status", "category": "regex_git"}
+{"input": "run ls -la", "expected_tool": "run_cmd", "category": "regex_run"}
+{"input": "remember: buy milk", "expected_tool": "remember", "category": "regex_memory"}
+{"input": "recall: milk", "expected_tool": "recall", "category": "regex_memory"}

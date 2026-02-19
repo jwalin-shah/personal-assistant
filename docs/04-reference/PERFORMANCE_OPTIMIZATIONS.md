@@ -204,7 +204,7 @@ cache.clear();                     // All entries
 ## Integration with Other Rules
 
 - **Caching Rule**: See `docs/CACHING.md` for LLM response caching
-- **Storage Rule**: See `.cursor/rules/storage.mdc` for JSONL optimization
-- **Testing Rule**: See `.cursor/rules/testing.mdc` for test performance (parallel execution)
-- **Performance Rule**: See `.cursor/rules/performance.mdc` for general performance patterns
+- **Storage Rule**: See `docs/04-reference/CACHING.md` for JSONL optimization
+- **Testing Rule**: See `docs/03-workflow/TESTING.md` for test performance (parallel execution)
+- **Performance Rule**: See `docs/04-reference/PERFORMANCE_OPTIMIZATIONS.md` for general performance patterns
 

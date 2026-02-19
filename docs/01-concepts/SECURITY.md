@@ -278,9 +278,9 @@ Provide specific recommendations.
 
 ## Related Documentation
 
-- **Security Rules**: `.cursor/rules/security.mdc`
+- **Security Rules**: `docs/01-concepts/SECURITY.md`
 - **Code Review Guide**: `docs/CODE_REVIEW.md`
-- **Error Patterns**: `.cursor/rules/errors.mdc`
+- **Error Patterns**: `docs/04-reference/ERRORS.md`
 
 ---
 
@@ -313,7 +313,7 @@ return { ok: false, error: makeError('SECURITY_ERROR', 'Generic message') };
 
 ✅ **Security fixes applied**: All CodeQL issues resolved
 
-✅ **Security patterns**: Documented in `.cursor/rules/security.mdc`
+✅ **Security patterns**: Documented in `docs/01-concepts/SECURITY.md`
 
 ✅ **Best practices**: Follow patterns in security.mdc
 

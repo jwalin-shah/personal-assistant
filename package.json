@@ -7,6 +7,9 @@
         "assistant": "./dist/app/cli.js"
     },
     "scripts": {
+        "showcase:setup": "npm install && npm run build",
+        "showcase:run": "npm run demo",
+        "showcase:verify": "npm run check && npm test",
         "build": "tsc",
         "build:watch": "tsc --watch --preserveWatchOutput",
         "clean": "rm -rf dist coverage .tmp .cache .test-results *.prof *.profraw *.cpuprofile *.heapsnapshot",
@@ -99,5 +102,8 @@
     },
     "engines": {
         "node": ">=18.0.0"
+    },
+    "volta": {
+        "node": "22.21.1"
     }
 }

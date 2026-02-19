@@ -1101,15 +1101,16 @@ async function handleDemo(executor: Executor, human: boolean): Promise<void> {
 }
 
 // Run CLI
-main().catch(err => {
+main().catch((err: unknown) => {
     const verbose = process.argv.includes('--verbose');
 
-    if (verbose && err.stack) {
+    if (verbose && err instanceof Error && err.stack) {
         // Print stack trace to stderr when --verbose is set
         console.error(err.stack);
     }
 
     // Always print the error message (current behavior)
-    console.error(JSON.stringify({ ok: false, error: err.message }));
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    console.error(JSON.stringify({ ok: false, error: errorMessage }));
     process.exit(1);
 });

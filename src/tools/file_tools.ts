@@ -654,9 +654,6 @@ export function handleMoveFile(args: MoveFileArgs, context: ExecutorContext): To
         };
     }
     // If destStats is null, destination doesn't exist, which is fine - we'll create it
-    // If destStats exists and is a file, it will be overwritten (Node.js fs.renameSync behavior)
-
-    // Ensure destination directory exists
     try {
         const destDir = path.dirname(destinationPath);
         fs.mkdirSync(destDir, { recursive: true });

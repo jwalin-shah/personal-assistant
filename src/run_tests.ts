@@ -285,8 +285,9 @@ async function runAllTests(): Promise<void> {
 }
 
 // Run tests
-runAllTests().catch(err => {
-    console.error(`\n❌ Test runner failed: ${err.message}`);
-    if (err.stack) console.error(err.stack);
+runAllTests().catch((err: unknown) => {
+    const error = err as Error;
+    console.error(`\n❌ Test runner failed: ${error.message}`);
+    if (error.stack) console.error(error.stack);
     process.exit(1);
 });

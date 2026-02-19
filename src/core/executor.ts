@@ -88,8 +88,8 @@ export class Executor {
             console.error(`  this.baseDir: ${this.baseDir}`);
             try {
                 console.error(`  realpath.native: ${fs.realpathSync.native(config.baseDir)}`);
-            } catch (e) {
-                console.error(`  realpath.native failed: ${e}`);
+            } catch (e: unknown) {
+                console.error(`  realpath.native failed: ${e instanceof Error ? e.message : String(e)}`);
             }
         }
 
@@ -423,7 +423,8 @@ export class Executor {
             const entries: SizeEntry[] = [];
 
             try {
-                const stat = fs.statSync(dirPath);
+                // Use lstatSync to avoid following symlinks (prevents loops)
+                const stat = fs.lstatSync(dirPath);
                 if (stat.isFile()) {
                     totalSize = stat.size;
                     entries.push({ path: dirPath, size: totalSize });
@@ -431,7 +432,9 @@ export class Executor {
                 }
 
                 if (!stat.isDirectory()) {
-                    return { size: 0, entries: [] };
+                    // Symlinks, sockets, pipes, etc.
+                    // We don't recurse into them, just count them if they have size
+                    return { size: stat.size, entries: [] };
                 }
 
                 // Calculate size of directory itself (metadata)
@@ -444,7 +447,7 @@ export class Executor {
                     for (const entry of dirEntries) {
                         const fullPath = path.join(dirPath, entry);
                         try {
-                            const entryStat = fs.statSync(fullPath);
+                            const entryStat = fs.lstatSync(fullPath);
                             if (entryStat.isFile()) {
                                 totalSize += entryStat.size;
                             } else if (entryStat.isDirectory()) {
@@ -470,7 +473,7 @@ export class Executor {
                 for (const entry of dirEntries) {
                     const fullPath = path.join(dirPath, entry);
                     try {
-                        const entryStat = fs.statSync(fullPath);
+                        const entryStat = fs.lstatSync(fullPath);
                         if (entryStat.isFile()) {
                             totalSize += entryStat.size;
                         } else if (entryStat.isDirectory() && shouldRecurse) {

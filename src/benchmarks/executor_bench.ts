@@ -31,6 +31,7 @@ for (let i = 0; i < 100; i++) {
 const context: ExecutorContext = {
     baseDir: BENCH_DIR,
     memoryLogPath: memoryPath,
+    memoryPath: memoryPath, // Required by ExecutorContext
     start: nowMs(),
     // Mocked helpers to match executor.ts implementation
     readJsonl: <T>(filePath: string, isValid: (entry: unknown) => boolean): T[] => {
@@ -50,7 +51,7 @@ const context: ExecutorContext = {
     },
 
     scoreEntry: (entry: MemoryEntry, needle: string, _terms: string[]) => {
-        const text = entry.text.toLowerCase();
+        const text = typeof entry.text === 'string' ? entry.text.toLowerCase() : '';
         let score = 0;
         if (needle) {
             let index = text.indexOf(needle);

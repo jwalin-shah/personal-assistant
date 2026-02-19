@@ -6,10 +6,6 @@ interface PrivateDispatcher {
     extractArgsFromText(text: string, intent: string): { query?: string };
 }
 
-interface StatusError extends Error {
-    status?: number | string;
-}
-
 async function runTests() {
     console.log('Running Dispatcher Recall Edge Cases...');
     const dispatcher = createDispatcher();
@@ -70,6 +66,9 @@ async function runTests() {
         // Test 5: Retry on 500
         console.log('Test: retries on 500 status');
         let attempts = 0;
+        interface StatusError extends Error {
+            status?: number | string;
+        }
         const fn500 = async () => {
             attempts++;
             if (attempts < 3) {

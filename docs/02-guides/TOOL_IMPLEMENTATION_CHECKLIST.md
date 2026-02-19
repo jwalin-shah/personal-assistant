@@ -167,6 +167,4 @@ Use this checklist to implement tools one by one. Copy the tool name and descrip
 - Start with Phase 1 for highest value, easiest implementation
 - Phase 13 (AI-Powered) requires LLM provider to be configured
 - All destructive operations should require confirmation
-- See `docs/PROPOSED_TOOLS.md` for detailed descriptions
-- See `docs/ADDING_TOOLS_GUIDE.md` for implementation patterns
-
+- See `docs/02-guides/ADDING_TOOLS_GUIDE.md` for implementation patterns

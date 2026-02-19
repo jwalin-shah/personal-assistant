@@ -612,12 +612,13 @@ function showTools(currentAgent: Agent) {
     const experimentalTools: Array<[string, ToolSpec]> = [];
 
     for (const [name, spec] of Object.entries(TOOL_SCHEMAS)) {
+        const toolSpec = spec as { description: string; status?: string };
         if (!agentTools.has(name)) continue;
 
-        if (spec.status === 'ready') {
-            readyTools.push([name, spec]);
-        } else if (spec.status === 'experimental') {
-            experimentalTools.push([name, spec]);
+        if (toolSpec.status === 'ready') {
+            readyTools.push([name, toolSpec]);
+        } else if (toolSpec.status === 'experimental') {
+            experimentalTools.push([name, toolSpec]);
         }
     }
 

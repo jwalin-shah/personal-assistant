@@ -246,8 +246,9 @@ function runTests() {
         assert.equal(result.ok, true, 'Should succeed with valid args');
         assert.ok(result.result, 'Should return result');
         console.log('PASS: Success case');
-    } catch (e: any) {
-        console.error('FAIL: Success case', e.message);
+    } catch (e: unknown) {
+        const err = e as Error;
+        console.error('FAIL: Success case', err.message);
         failures++;
     }
 
@@ -255,14 +256,16 @@ ${requiredArgs
     .map(
         arg => `    // Test: Missing required arg '${arg.name}'
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const args: any = { ...${JSON.stringify(successArgs)} };
         delete args.${arg.name};
         const result = ${handlerName}(args, mockContext);
         assert.equal(result.ok, false, 'Should fail without ${arg.name}');
         assert.ok(result.error?.code === 'MISSING_ARGUMENT' || result.error?.code === 'VALIDATION_ERROR');
         console.log('PASS: Missing required arg ${arg.name}');
-    } catch (e: any) {
-        console.error('FAIL: Missing required arg ${arg.name}', e.message);
+    } catch (e: unknown) {
+        const err = e as Error;
+        console.error('FAIL: Missing required arg ${arg.name}', err.message);
         failures++;
     }
 `

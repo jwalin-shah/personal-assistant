@@ -119,7 +119,7 @@ if (verbose) {
 }
 ```
 
-**Important**: Debug logs should go to stderr, not stdout. See `.cursor/rules/core.mdc` for logging conventions.
+**Important**: Debug logs should go to stderr, not stdout. See `docs/01-concepts/ARCHITECTURE.md` for logging conventions.
 
 ## Inspecting Data Files
 

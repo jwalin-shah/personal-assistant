@@ -55,7 +55,12 @@ export class MockLLMProvider implements LLMProvider {
                 toolCall: {
                     tool_name: response.toolCall.tool_name,
                     args: response.toolCall.args,
-                    _debug: null,
+                    _debug: {
+                        path: 'mock',
+                        model: 'mock',
+                        memory_read: false,
+                        memory_write: false,
+                    },
                 },
             };
         }
