@@ -58,8 +58,7 @@
         "profile:memory": "npm run build && node --heapsnapshot-signal=SIGUSR2 dist/app/cli.js demo",
         "docs:api": "typedoc --out docs/api src/ --exclude '**/*.test.ts' --exclude '**/run_tests.ts'",
         "docs:api:open": "npm run docs:api && open docs/api/index.html",
-        "release": "semantic-release",
-        "prepare": "husky"
+        "release": "semantic-release"
     },
     "lint-staged": {
         "src/**/*.ts": [
@@ -87,7 +86,6 @@
         "c8": "^10.1.3",
         "concurrently": "^9.2.1",
         "eslint": "^9.0.0",
-        "husky": "^9.0.0",
         "lint-staged": "^16.2.7",
         "nodemon": "^3.1.11",
         "prettier": "^3.0.0",
