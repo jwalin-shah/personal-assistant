@@ -1,6 +1,6 @@
-# Personal Assistant
+# Personal Data Engine (repo: personal-assistant)
 
-Local-first assistant runtime for turning natural-language requests into reliable tool execution.
+Local-first personal data engine for turning heterogeneous datasets into reliable retrieval and tool execution.
 
 ## TL;DR
 
