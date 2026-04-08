@@ -6,7 +6,7 @@
  */
 
 // All imports consolidated at the top of the file
-import type { Agent, Message, ResolvedConfig, ToolSpec, ToolResult } from '../core';
+import type { Agent, Message, ResolvedConfig, ToolSpec } from '../core';
 import {
     generateCorrelationId,
     getPackageVersion,

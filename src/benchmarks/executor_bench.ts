@@ -31,7 +31,6 @@ for (let i = 0; i < 100; i++) {
 const context: ExecutorContext = {
     baseDir: BENCH_DIR,
     memoryLogPath: memoryPath,
-    memoryPath: memoryPath, // Required by ExecutorContext
     start: nowMs(),
     // Mocked helpers to match executor.ts implementation
     readJsonl: <T>(filePath: string, isValid: (entry: unknown) => boolean): T[] => {

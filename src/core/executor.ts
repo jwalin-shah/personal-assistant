@@ -89,7 +89,9 @@ export class Executor {
             try {
                 console.error(`  realpath.native: ${fs.realpathSync.native(config.baseDir)}`);
             } catch (e: unknown) {
-                console.error(`  realpath.native failed: ${e instanceof Error ? e.message : String(e)}`);
+                console.error(
+                    `  realpath.native failed: ${e instanceof Error ? e.message : String(e)}`
+                );
             }
         }
 

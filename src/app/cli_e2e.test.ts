@@ -77,8 +77,11 @@ function runTests() {
     try {
         const result = runCli(['generate', 'tool', 'e2e_test_tool', '--args', 'text:string']);
         const json = parseJson(result.stdout);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        assert.ok((json as any)?.ok === true || result.status === 0, 'Generate tool should succeed');
+        assert.ok(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (json as any)?.ok === true || result.status === 0,
+            'Generate tool should succeed'
+        );
         console.log('PASS: Generate tool command');
     } catch (e: unknown) {
         const message = e instanceof Error ? e.message : String(e);
@@ -93,8 +96,11 @@ function runTests() {
 
         const result = runCli(['generate', 'tests', 'e2e_test_tool2']);
         const json = parseJson(result.stdout);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        assert.ok((json as any)?.ok === true || result.status === 0, 'Generate tests should succeed');
+        assert.ok(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (json as any)?.ok === true || result.status === 0,
+            'Generate tests should succeed'
+        );
         console.log('PASS: Generate tests command');
     } catch (e: unknown) {
         const message = e instanceof Error ? e.message : String(e);
@@ -130,8 +136,11 @@ function runTests() {
         const statsJson = parseJson(statsResult.stdout);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         assert.ok((statsJson as any)?.ok === true, 'Cache stats should succeed');
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        assert.ok(typeof (statsJson as any)?.result?.entries === 'number', 'Should have entries count');
+        assert.ok(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            typeof (statsJson as any)?.result?.entries === 'number',
+            'Should have entries count'
+        );
         console.log('PASS: Cache commands');
     } catch (e: unknown) {
         const message = e instanceof Error ? e.message : String(e);

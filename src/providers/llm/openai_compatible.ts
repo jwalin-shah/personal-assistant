@@ -21,6 +21,7 @@
  * @module llm/openai_compatible
  */
 
+import * as http from 'node:http';
 import { request as httpRequest, IncomingMessage } from 'node:http';
 import { request as httpsRequest } from 'node:https';
 import { URL } from 'node:url';
@@ -116,16 +117,18 @@ function fetchFallback(url: string, options?: FetchOptions): Promise<FetchRespon
             }
         ) as http.ClientRequest;
 
-        req.on('error', (err: Error) => {
-            cleanup();
-            if (signal) {
-                signal.removeEventListener('abort', abortHandler);
-            }
-            reject(err);
-        });
+        if (req) {
+            req.on('error', (err: Error) => {
+                cleanup();
+                if (signal) {
+                    signal.removeEventListener('abort', abortHandler);
+                }
+                reject(err);
+            });
+        }
 
-        if (options?.body) req.write(options.body);
-        req.end();
+        if (options?.body && req) req.write(options.body);
+        if (req) req.end();
     });
 }
 
@@ -251,7 +254,7 @@ export class OpenAICompatibleProvider implements LLMProvider {
                             },
                             body: bodyStr,
                             signal: controller.signal,
-                        } as RequestInit);
+                        } as FetchOptions);
 
                         clearTimeout(timeoutId);
 
@@ -539,17 +542,21 @@ export class OpenAICompatibleProvider implements LLMProvider {
                     }
                 ) as http.ClientRequest;
 
-                req.on('error', (err: Error) => {
-                    if (timeoutId) {
-                        clearTimeout(timeoutId);
-                        timeoutId = null;
-                    }
-                    requestCompleted = true;
-                    reject(err);
-                });
+                if (req) {
+                    req.on('error', (err: Error) => {
+                        if (timeoutId) {
+                            clearTimeout(timeoutId);
+                            timeoutId = null;
+                        }
+                        requestCompleted = true;
+                        reject(err);
+                    });
+                }
 
-                req.write(bodyStr);
-                req.end();
+                if (req) {
+                    req.write(bodyStr);
+                    req.end();
+                }
             });
         } catch (err: unknown) {
             // Handle timeout and other errors
@@ -587,7 +594,7 @@ export class OpenAICompatibleProvider implements LLMProvider {
 
         try {
             for await (const chunk of response) {
-                buffer += (chunk as string);
+                buffer += chunk as string;
                 const lines = buffer.split('\n');
                 buffer = lines.pop() || '';
 

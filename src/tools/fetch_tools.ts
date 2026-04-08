@@ -65,7 +65,10 @@ export async function handleReadUrl(
     } catch (err: unknown) {
         return {
             ok: false,
-            error: makeError(ErrorCode.VALIDATION_ERROR, `Invalid URL format: ${err instanceof Error ? err.message : String(err)}`),
+            error: makeError(
+                ErrorCode.VALIDATION_ERROR,
+                `Invalid URL format: ${err instanceof Error ? err.message : String(err)}`
+            ),
         };
     }
 

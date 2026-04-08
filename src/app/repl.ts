@@ -19,7 +19,7 @@ function isRlClosed(rl: readline.Interface): boolean {
 import { route } from './router';
 import { isRouteError, isRouteToolCall } from '../core';
 import { saveConfig } from '../core';
-import type { AppConfig, Message, Agent, ToolSpec } from '../core';
+import type { AppConfig, Message, Agent } from '../core';
 import { AGENTS } from '../agents';
 import { Dispatcher } from '../dispatcher';
 import { initializeRuntime, TOOL_SCHEMAS } from '../runtime';
@@ -608,8 +608,8 @@ function showTools(currentAgent: Agent) {
     const agentTools = new Set(currentAgent.tools);
 
     // Group tools by status
-    const readyTools: Array<[string, ToolSpec]> = [];
-    const experimentalTools: Array<[string, ToolSpec]> = [];
+    const readyTools: Array<[string, { description: string; status?: string }]> = [];
+    const experimentalTools: Array<[string, { description: string; status?: string }]> = [];
 
     for (const [name, spec] of Object.entries(TOOL_SCHEMAS)) {
         const toolSpec = spec as { description: string; status?: string };

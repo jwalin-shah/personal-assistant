@@ -68,6 +68,7 @@ npm run repl
 
 ## Documentation
 
+- [Case Study](CASE_STUDY.md)
 - [Documentation Map](docs/START_HERE.md)
 - [Architecture](docs/01-concepts/ARCHITECTURE.md)
 - [Commands](docs/04-reference/COMMANDS.md)
